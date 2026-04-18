@@ -41,11 +41,12 @@ The project includes the following diagrams:
 
 ---
 
-Project Structure
-hbnb-architecture/
-│
-├── README.md
-└── technical_document.md
+**Project Structure  **
+
+hbnb-architecture/  
+│  
+├── README.md  
+└── technical_document.md  
 
 ---
 
