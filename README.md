@@ -37,6 +37,7 @@ flowchart TD
     Place --> Repo
     Review --> DAO
     Amenity --> Repo
+```
 
 
 ###Class Diagram
@@ -88,3 +89,4 @@ classDiagram
     Place "1" --> "many" Amenity : includes
     Review "1" --> "1" Place : about
     Review "1" --> "1" User : by
+```
