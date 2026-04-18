@@ -1,156 +1,59 @@
-Architecture:
+##HBnB Architecture
+###Overview
 
-Package Diagram
+This repository contains the architectural design and technical documentation for the HBnB application. The goal of this project is to define a clear and maintainable system structure using layered architecture principles.
 
-```mermaid
+The design separates responsibilities across different layers and uses the Facade pattern to simplify interactions between components.
 
-flowchart TD
-    subgraph P[Presentation Layer]
-        direction TB
-        Svc[Services]
-        API[API Endpoints]
-    end
+---
 
-    subgraph B[Business Logic Layer]
-        direction TB
-        User[User]
-        Place[Place]
-        Review[Review]
-        Amenity[Amenity]
-        Facade[Facade]
-    end
+###Architecture Summary
 
-    subgraph D[Persistence Layer]
-        direction TB
-        DAO[Database Access Objects]
-        Repo[Repositories]
-    end
+The system is organized into three main layers:
 
-    %% Communication pathways (Facade pattern)
-    Svc --> Facade
-    API --> Facade
-    Facade --> User
-    Facade --> Place
-    Facade --> Review
-    Facade --> Amenity
-    User --> DAO
-    Place --> Repo
-    Review --> DAO
-    Amenity --> Repo
-```
+- **Presentation Layer** – Handles API endpoints and user interaction
+- **Business Logic Layer** – Contains core models and application logic
+- **Persistence Layer** – Manages data storage and retrieval
 
+A **Facade** is used as a central interface between the Presentation Layer and the Business Logic Layer.
 
-Class Diagram
+---
 
-```mermaid
+###Diagrams
 
-classDiagram
-    class User {
-        +UUID4 id
-        +string name
-        +string email
-        +datetime created_at
-        +datetime updated_at
-        +createReview(place: Place, text: string): Review
-        +updateProfile(name: string, email: string)
-    }
+The project includes the following diagrams:
 
-    class Place {
-        +UUID4 id
-        +string name
-        +string description
-        +string location
-        +datetime created_at
-        +datetime updated_at
-        +addAmenity(amenity: Amenity)
-        +getReviews(): List~Review~
-    }
+- High-Level Package Diagram
+- Business Logic Class Diagram
+- API Sequence Diagrams
 
-    class Review {
-        +UUID4 id
-        +string text
-        +int rating
-        +datetime created_at
-        +datetime updated_at
-        +updateReview(text: string, rating: int)
-    }
+**Full technical documentation:**
+./technical_document.md
 
-    class Amenity {
-        +UUID4 id
-        +string name
-        +string type
-        +datetime created_at
-        +datetime updated_at
-    }
+---
 
-    %% Relationships and multiplicities
-    User "1" --> "many" Review : writes
-    Place "1" --> "many" Review : receives
-    Place "1" --> "many" Amenity : includes
-    Review "1" --> "1" Place : about
-    Review "1" --> "1" User : by
-```
+###Technologies Used
 
-Sequence Diagram
+- Mermaid.js (for diagrams)
+- Markdown (for documentation)
+- Git & GitHub (version control)
 
-```mermaid
+---
 
-sequenceDiagram
-    participant Client
-    participant API as API Endpoint (Presentation)
-    participant Facade as Facade (Business Logic)
-    participant Repo as Repository (Persistence)
-    participant DB as Database
+Project Structure
+hbnb-architecture/
+│
+├── README.md
+└── technical_document.md
 
-    %% --- 1. User Registration ---
-    rect rgb(238,242,255)
-    Note over Client,DB: User Registration Sequence
-    Client->>API: POST /users (user data)
-    API->>Facade: registerUser(user data)
-    Facade->>Repo: saveUser(user)
-    Repo->>DB: INSERT new user record
-    DB-->>Repo: confirmation
-    Repo-->>Facade: user created
-    Facade-->>API: user object
-    API-->>Client: 201 Created (user info)
-    end
+---
 
-    %% --- 2. Place Creation ---
-    rect rgb(240,253,250)
-    Note over Client,DB: Place Creation Sequence
-    Client->>API: POST /places (place data)
-    API->>Facade: createPlace(place data)
-    Facade->>Repo: savePlace(place)
-    Repo->>DB: INSERT new place record
-    DB-->>Repo: confirmation
-    Repo-->>Facade: place created
-    Facade-->>API: place object
-    API-->>Client: 201 Created (place info)
-    end
+###Purpose
 
-    %% --- 3. Review Submission ---
-    rect rgb(245,243,255)
-    Note over Client,DB: Review Submission Sequence
-    Client->>API: POST /reviews (review data)
-    API->>Facade: createReview(review data)
-    Facade->>Repo: saveReview(review)
-    Repo->>DB: INSERT new review record
-    DB-->>Repo: confirmation
-    Repo-->>Facade: review created
-    Facade-->>API: review object
-    API-->>Client: 201 Created (review info)
-    end
+This repository serves as a reference for system design and will guide future implementation phases of the HBnB application.
 
-    %% --- 4. Fetching List of Places ---
-    rect rgb(255,247,237)
-    Note over Client,DB: Fetch List of Places Sequence
-    Client->>API: GET /places?filters
-    API->>Facade: getPlaces(filters)
-    Facade->>Repo: queryPlaces(filters)
-    Repo->>DB: SELECT * FROM places WHERE filters
-    DB-->>Repo: result set
-    Repo-->>Facade: list of places
-    Facade-->>API: formatted list
-    API-->>Client: 200 OK (list of places)
-    end
-```
+---
+
+###Author
+
+Uzair Jahangirov
