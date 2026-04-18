@@ -1,5 +1,7 @@
 ##Architecture
 
+###Package Diagram
+
 ```mermaid
 
 flowchart TD
@@ -35,3 +37,54 @@ flowchart TD
     Place --> Repo
     Review --> DAO
     Amenity --> Repo
+
+
+###Class Diagram
+
+```mermaid
+
+classDiagram
+    class User {
+        +UUID4 id
+        +string name
+        +string email
+        +datetime created_at
+        +datetime updated_at
+        +createReview(place: Place, text: string): Review
+        +updateProfile(name: string, email: string)
+    }
+
+    class Place {
+        +UUID4 id
+        +string name
+        +string description
+        +string location
+        +datetime created_at
+        +datetime updated_at
+        +addAmenity(amenity: Amenity)
+        +getReviews(): List~Review~
+    }
+
+    class Review {
+        +UUID4 id
+        +string text
+        +int rating
+        +datetime created_at
+        +datetime updated_at
+        +updateReview(text: string, rating: int)
+    }
+
+    class Amenity {
+        +UUID4 id
+        +string name
+        +string type
+        +datetime created_at
+        +datetime updated_at
+    }
+
+    %% Relationships and multiplicities
+    User "1" --> "many" Review : writes
+    Place "1" --> "many" Review : receives
+    Place "1" --> "many" Amenity : includes
+    Review "1" --> "1" Place : about
+    Review "1" --> "1" User : by
