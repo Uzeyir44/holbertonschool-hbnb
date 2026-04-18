@@ -292,13 +292,13 @@ sequenceDiagram
 
 A typical API request follows this sequence:
 
- 1)The client sends a request to the API endpoint.
- 2)The API validates the request data.
- 3)The request is forwarded to the Facade.
- 4)The Facade coordinates the required operations in the Business Logic Layer.
- 5)The Business Logic Layer interacts with the Persistence Layer to retrieve or store data.
- 6)The result is returned back through the Facade to the API.
- 7)The API sends the final response to the client.
+ 1)The client sends a request to the API endpoint.  
+ 2)The API validates the request data.  
+ 3)The request is forwarded to the Facade.  
+ 4)The Facade coordinates the required operations in the Business Logic Layer.  
+ 5)The Business Logic Layer interacts with the Persistence Layer to retrieve or store data.  
+ 6)The result is returned back through the Facade to the API.  
+ 7)The API sends the final response to the client.  
 
 ---
 
