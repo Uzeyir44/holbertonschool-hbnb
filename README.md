@@ -1,5 +1,6 @@
-##HBnB Architecture
-###Overview
+**HBnB Architecture**
+
+**Overview**
 
 This repository contains the architectural design and technical documentation for the HBnB application. The goal of this project is to define a clear and maintainable system structure using layered architecture principles.
 
@@ -7,7 +8,7 @@ The design separates responsibilities across different layers and uses the Facad
 
 ---
 
-###Architecture Summary
+**Architecture Summary**
 
 The system is organized into three main layers:
 
@@ -19,7 +20,7 @@ A **Facade** is used as a central interface between the Presentation Layer and t
 
 ---
 
-###Diagrams
+**Diagrams**
 
 The project includes the following diagrams:
 
@@ -32,7 +33,7 @@ The project includes the following diagrams:
 
 ---
 
-###Technologies Used
+**Technologies Used**
 
 - Mermaid.js (for diagrams)
 - Markdown (for documentation)
@@ -48,12 +49,12 @@ hbnb-architecture/
 
 ---
 
-###Purpose
+**Purpose**
 
 This repository serves as a reference for system design and will guide future implementation phases of the HBnB application.
 
 ---
 
-###Author
+**Author**
 
 Uzair Jahangirov
