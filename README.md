@@ -41,7 +41,7 @@ The project includes the following diagrams:
 
 ---
 
-**Project Structure  **
+**Project Structure**
 
 hbnb-architecture/  
 │  
